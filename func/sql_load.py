@@ -1,20 +1,17 @@
 import psycopg2
 import os
+import logging
 
 #running the preproc file which prepares the csv for SQL upload
-os.system("sql_preproc.py 1")
+exec(open("func\sql_preproc.py").read())
 
-#connecting to postgres
-conn = psycopg2.connect(database="OULAD",
-                        user='postgres', password='thesis1', 
-                        host='127.0.0.1', port='5433'
-)
-  
-conn.autocommit = True
-cursor = conn.cursor()
+logging.basicConfig()
+logger = logging.getLogger("SQL_upload")
+logger.setLevel(logging.INFO)
 
-#creating the sql tables
-sql = '''
+#writing the SQL code needed
+#creating the tables in postgres
+sql_create = '''
 
 CREATE TABLE IF NOT EXISTS assessments (
     code_module char(3) NOT NULL,
@@ -47,11 +44,9 @@ CREATE TABLE IF NOT EXISTS registration (
     date_unregistration boolean
 );
 '''
-cursor.execute(sql)
-  
 
-#loading data in the table 
-sql2 = '''
+#loading data in the tables
+sql_load = '''
 
 COPY assessments(
     code_module,
@@ -61,7 +56,7 @@ COPY assessments(
     date,
     weight
     )
-FROM '../data/assessments_clean.csv'
+FROM 'D:/Thesis/Work/github/event-log-partitioning/data/assessments_clean.csv'
 DELIMITER ','
 CSV HEADER;
 
@@ -71,7 +66,7 @@ COPY vle(
     code_presentation,
     activity_type
     )
-FROM '../data/vle_clean.csv'
+FROM 'D:/Thesis/Work/github/event-log-partitioning/data/vle_clean.csv'
 DELIMITER ','
 CSV HEADER;
 
@@ -81,7 +76,7 @@ COPY student_assessment(
     is_banked,
     score
     )
-FROM '../data/studentAssessment_clean.csv'
+FROM 'D:/Thesis/Work/github/event-log-partitioning/data/studentAssessment_clean.csv'
 DELIMITER ','
 CSV HEADER;
 
@@ -92,12 +87,41 @@ COPY registration(
     date_registration,
     date_unregistration
     )
-FROM '../data/studentRegistration_clean.csv'
+FROM 'D:/Thesis/Work/github/event-log-partitioning/data/studentRegistration_clean.csv'
 DELIMITER ','
 CSV HEADER;
 
 '''
-cursor.execute(sql2)
+
+def postgres_connect ():
+    ''' A function that connects to postgres 
+        with my credentials
+
+        Returns: 
+            Returns the conn object to be 
+            used to load tables
+    
+    '''
+    #connecting to postgres
+    conn = psycopg2.connect(database="OULAD",
+                            user='postgres', password='thesis1', 
+                            host='127.0.0.1', port='5433'
+    
+    )
+    
+    conn.autocommit = True
+
+    logger.info("Postgres Connection Successfull")
+
+    return conn
+
+#creating the sql tables
+conn = postgres_connect()
+
+#running the SQL Querry
+conn.cursor().execute(sql_create)
+conn.cursor().execute(sql_load)
+logger.info("Data was sent to Postgres")
 
 #closing the SQl connection
 conn.commit()
