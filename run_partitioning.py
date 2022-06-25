@@ -116,11 +116,11 @@ logger_general.info ("The domain knowledge was obtained", knowledge.head(3))
 #selecting the cases which we are going to split for
 domain_rule = ''' (knowledge["score"] >= 40) & (knowledge["still_enrolled"] == True) '''
 knowledge = domain_selected_cases(knowledge = knowledge, domain_rule = domain_rule)
-logger_general.info ("The cases for the split were obtained", knowledge.head(3))
+logger_general.info ("The cases for the split were obtained", knowledge[:3])
 
 
 #splitting the event log for wanted and unwanted traces
-logger_general.info ("Splitting started", knowledge.head(3))
+logger_general.info ("Splitting started")
 log_wanted, log_unwanted = partition_event_log(knowledge = knowledge, log = log)
 logger_general.info ("Splitting ended succesfully. Wanted traces %s. Unwanted traces %s", len(log_wanted),len(log_unwanted))
 
