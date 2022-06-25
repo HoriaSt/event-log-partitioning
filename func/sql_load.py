@@ -2,8 +2,8 @@ import psycopg2
 import os
 import logging
 
-#running the preproc file which prepares the csv for SQL upload
-exec(open("func\sql_preproc.py").read())
+#importing the module for preprocessing the data
+import func.sql_preproc
 
 logging.basicConfig()
 logger = logging.getLogger("SQL_upload")
