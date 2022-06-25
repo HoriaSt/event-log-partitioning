@@ -114,7 +114,7 @@ logger_general.info ("The domain knowledge was obtained", knowledge.head(3))
 
 
 #selecting the cases which we are going to split for
-domain_rule = ''' (grades["score"] >= 40) & (grades["still_enrolled"] == True) '''
+domain_rule = ''' (knowledge["score"] >= 40) & (knowledge["still_enrolled"] == True) '''
 knowledge = domain_selected_cases(knowledge = knowledge, domain_rule = domain_rule)
 logger_general.info ("The cases for the split were obtained", knowledge.head(3))
 
