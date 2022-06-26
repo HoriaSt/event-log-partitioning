@@ -3,12 +3,13 @@ import pandas as pd
 import pm4py
 import psycopg2
 import logging
+import graphviz
 
 pd.options.mode.chained_assignment = None
 
 
 #loading the module for event log generation and reading in
-from func.event_log import event_log_import, event_log_generation, case_id
+from func.event_log import event_log_import, event_log_generation
 
 #loading the module for preprocessing and extracting the domain knowledge
 import func.ontology_processing as ontology
@@ -116,7 +117,7 @@ logger_general.info ("The domain knowledge was obtained", knowledge.head(3))
 #selecting the cases which we are going to split for
 domain_rule = ''' (knowledge["score"] >= 40) & (knowledge["still_enrolled"] == True) '''
 knowledge = domain_selected_cases(knowledge = knowledge, domain_rule = domain_rule)
-logger_general.info ("The cases for the split were obtained", knowledge[:3])
+logger_general.info ("The cases for the split were obtained:. An example of first 3 is: %s", knowledge[:3])
 
 
 #splitting the event log for wanted and unwanted traces

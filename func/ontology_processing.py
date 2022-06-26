@@ -19,7 +19,7 @@ def ontology_import (query=str):
     '''
     logger = logging.getLogger("SQL_read_in")
     logger.setLevel(logging.DEBUG)
-
+    print ("started")
     from psycopg2 import Error
 
     try:
@@ -32,16 +32,17 @@ def ontology_import (query=str):
 
         # Create a cursor to perform database operations
         cursor = connection.cursor()
-        # Executing a SQL query
-        cursor.execute("SELECT version();")
-        # Fetch result
-        record = cursor.fetchone()
-        logger.debug("You are connected to - %s \n", record)
+        print ("cursour obtained")
 
+        logger.debug("You are connected to - %s", cursor)
+
+        print("Executing query")
         #getting the SQL info
         cursor.execute(query)
+        print("Query execured, fetching")
         grades = cursor.fetchall()
-        
+        print("Success")
+
         logger.info("Succesfully read-in the SQL data")
 
 
@@ -51,6 +52,7 @@ def ontology_import (query=str):
 
     finally:
         if (connection):
+            print("Closing connection")
             cursor.close()
             connection.close()
             logger.debug("PostgreSQL connection is closed")
