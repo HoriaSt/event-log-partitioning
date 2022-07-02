@@ -2,6 +2,8 @@ test.ipynb
 simple_event_log.xes
 data
 Graphviz
+figures
+test_clustering.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
