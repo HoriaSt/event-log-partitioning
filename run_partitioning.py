@@ -134,16 +134,16 @@ from pm4py.visualization.heuristics_net import visualizer as hn_visualizer
 heu_net = heuristics_miner.apply_heu(log, parameters={heuristics_miner.Variants.CLASSIC.value.Parameters.DEPENDENCY_THRESH: 0.99})
 gviz = hn_visualizer.apply(heu_net)
 hn_visualizer.view(gviz)
-hn_visualizer.save(gviz, "hn_all.png")
+hn_visualizer.save(gviz, "figures/hn_all.png")
 
 heu_net = heuristics_miner.apply_heu(log_wanted, parameters={heuristics_miner.Variants.CLASSIC.value.Parameters.DEPENDENCY_THRESH: 0.99})
 gviz = hn_visualizer.apply(heu_net)
 hn_visualizer.view(gviz)
-hn_visualizer.save(gviz, "hn_positive.png")
+hn_visualizer.save(gviz, "figures/hn_positive.png")
 
 heu_net = heuristics_miner.apply_heu(log_unwanted, parameters={heuristics_miner.Variants.CLASSIC.value.Parameters.DEPENDENCY_THRESH: 0.99})
 gviz = hn_visualizer.apply(heu_net)
 hn_visualizer.view(gviz)
-hn_visualizer.save(gviz, "hn_negative.png")
+hn_visualizer.save(gviz, "figures/hn_negative.png")
 
 
