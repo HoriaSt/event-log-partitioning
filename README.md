@@ -1,8 +1,8 @@
 # Domain Aware Event Log Partitioning
 
 This project represents the code support for my Bachelor's Thesis. It is an algorithm that provides a method for a domain-aware partitioning of an event log. There are two approaches: an automated one using k-means clustering and a semi-automatic filtering method. The folder structure is as followed:
-- one run-partitioning.py file which runs the semi automatic filtering method;
-- one run-clustering.py file which runs the automatic clustering method;
+- one *run-partitioning.py* file which runs the semi automatic filtering method;
+- one *run-clustering.py* file which runs the automatic clustering method;
 - one func folder which includes the necessary functions for the two methods.
 
 ## Required Input
@@ -12,6 +12,11 @@ It has to be stored in a folder named "data" on the main folder (or the data pat
 
 ## System Requirements
 For the required data, as well as for parsing the cleaned information, aproximatelly 500MBs of storage space are needed.
+
+The requiered packages to be installed are:
+- pandas
+- psycopg2
+- pm4py
 
 Moreover, the user only requires a machine that can run Python and PostgreSQL. The minimum requierements for the two are
 - a 1 GHz processor
