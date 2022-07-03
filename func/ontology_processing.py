@@ -58,9 +58,10 @@ def ontology_import (query=str):
             logger.debug("PostgreSQL connection is closed")
     return grades
 
-def domain_knowledge_processing (query):
+def domain_knowledge_processing_partitioning (query):
     ''' This function is dataset specific and performs all needed
     operations for preparing the cases from OULAD data for selection.
+    This function is tailored for the semi-automatic approach
 
     The function calls an ontology_import function which loads the ontology
     from SQL. Afterwards, the data imported gets preprocessed and prepared 
@@ -144,3 +145,41 @@ def domain_knowledge_processing (query):
     logger.debug("The domain knowledge was processed: %s", grades.head(3))
 
     return grades
+
+def domain_knowledge_clustering (query_grades, query_vle):
+    from psycopg2 import Error
+
+    logger = logging.getLogger("SQL_read_in")
+    logger.setLevel(logging.DEBUG)
+
+    try:
+        # Connect to an existing database
+        connection = psycopg2.connect(user="postgres",
+                                    password="thesis1",
+                                    host="localhost",
+                                    port="5433",
+                                    database="OULAD")
+
+        # Create a cursor to perform database operations
+        cursor = connection.cursor()
+        # Executing a SQL query
+        cursor.execute("SELECT version();")
+        
+        #getting the SQL info
+        cursor.execute(query_grades)
+        grade_profile = cursor.fetchall()
+
+        cursor.execute(query_vle)
+        vle = cursor.fetchall()
+        logger.info("Information read-in. vle has length %s and grades have length %s",
+                    len(grade_profile), len(vle))
+
+
+    except (Exception, Error) as error:
+        logger.error("Error while connecting to PostgreSQL %s", error)
+    finally:
+        if (connection):
+            cursor.close()
+            connection.close()
+            logger.info("PostgreSQL connection is closed")
+    return grade_profile, vle
