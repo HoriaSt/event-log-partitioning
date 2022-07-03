@@ -4,6 +4,7 @@ data
 Graphviz
 figures
 test_clustering.ipynb
+main_clustering.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
