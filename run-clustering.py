@@ -24,6 +24,9 @@ def partition_event_log (data):
     data_cl_1 = data[data.cluster == 1]
     data_cl_1 = data_cl_1["case:concept:name"]
 
+    data_cl_0 = list(data_cl_0)
+    data_cl_1 = list(data_cl_1)
+
     log_0 = pm4py.filter_event_attribute_values(log, attribute_key="case:concept:name", values = data_cl_0, retain=True, level = "case")
     log_1 = pm4py.filter_event_attribute_values(log, attribute_key="case:concept:name", values = data_cl_1, retain=True, level = "case")
     
@@ -86,7 +89,7 @@ data, X = preparing_kmeans(activity_profile = activity_profile,
 data = kmeans_apply (data=data, X=X, clusters = 2)
 
 log_0, log_1 = partition_event_log(data)
-
+print(log_0, log_1)
 from pm4py.algo.discovery.heuristics import algorithm as heuristics_miner
 from pm4py.visualization.heuristics_net import visualizer as hn_visualizer
 
