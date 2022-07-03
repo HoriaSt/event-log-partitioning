@@ -24,3 +24,6 @@ Moreover, the user only requires a machine that can run Python and PostgreSQL. T
 - 512 MB of HDD storage space
 
 The code was prepared and run on a Windows 10 machine with a 1.80 GHz i7-8550U CPU, 8GB of installed RAM and sufficient HDD storage space.
+
+## Future Steps
+The code needs to be better cleaned in order to closer follow the Google Python Style Guide - https://google.github.io/styleguide/pyguide.html
