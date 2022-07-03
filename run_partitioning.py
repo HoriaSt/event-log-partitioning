@@ -104,14 +104,9 @@ logger_general.setLevel(logging.DEBUG)
 log = event_log_import (data_path = "simple_event_log.xes") # reads the event log
 logger_general.info ("The available event log has the length %s",len(log))
 
-#converting the event log to pandas
-import pm4py.objects.conversion.log.converter as converter
-log_pd = converter.apply(log, variant = converter.Variants.TO_DATA_FRAME)
-logger_general.info ("The event log was converted to pandas")
-
 #obtaining the domain knowledge information
 knowledge = ontology.domain_knowledge_processing(query=query)
-logger_general.info ("The domain knowledge was obtained", knowledge.head(3))
+logger_general.info ("The domain knowledge was obtained: %s", knowledge.head(3))
 
 
 #selecting the cases which we are going to split for
