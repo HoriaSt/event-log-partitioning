@@ -327,14 +327,19 @@ def event_log_generation ():
 
     return event_log
 
-def event_log_import (data_path = str):
+def event_log_import (data_path = str, 
+                    pandas = False):
     ''' This function reads an event log from an .xes file
 
         Args:
             data_path: the path to the .xes file
+            pandas: a boolean value that tells if the event
+                    log should also be converted to a pandas
+                    dataframe or not. Prefilled with False
         
         Returns:
-            Returns an event log in the pm4py environemnt
+            Returns an event log in the pm4py environemnt. Optionally
+            (if pandas == True) it can also return a pandas dataframe
 
     '''
     from pm4py.objects.log.importer.xes import importer as xes_importer
@@ -352,6 +357,17 @@ def event_log_import (data_path = str):
     log = xes_importer.apply(data_path, variant = variant, parameters = parameters)
     logger.debug("Length of the event log is %s", len(log))
     logger.info("Event log read")
+
+    if pandas is True:
+
+        #converting to pandas if we pandas == True
+        import pm4py.objects.conversion.log.converter as converter
+
+        log_pd = converter.apply(log, variant = converter.Variants.TO_DATA_FRAME)
+
+        logger.info ("The event log was converted to pandas")
+        
+        return log, log_pd
 
     return log
 
