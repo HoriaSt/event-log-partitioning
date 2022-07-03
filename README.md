@@ -27,6 +27,7 @@ The code was prepared and run on a Windows 10 machine with a 1.80 GHz i7-8550U C
 
 ## Future Steps
 The code needs to be better cleaned in order to closer follow the Google Python Style Guide - https://google.github.io/styleguide/pyguide.html
+Testing should also be implemented (for e.g. using pytest)
 
 Moreover, better standardization could be achieved by testing the functions on a different dataset. Another useful next step is to convert the PM4Py integration in a ProM pulg-in for easier reusability. 
 
