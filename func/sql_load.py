@@ -1,5 +1,4 @@
 import psycopg2
-import os
 import logging
 
 #importing the module for preprocessing the data

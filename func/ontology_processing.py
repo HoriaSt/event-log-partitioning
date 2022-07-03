@@ -19,7 +19,6 @@ def ontology_import (query=str):
     '''
     logger = logging.getLogger("SQL_read_in")
     logger.setLevel(logging.DEBUG)
-    print ("started")
     from psycopg2 import Error
 
     try:
@@ -32,16 +31,12 @@ def ontology_import (query=str):
 
         # Create a cursor to perform database operations
         cursor = connection.cursor()
-        print ("cursour obtained")
 
         logger.debug("You are connected to - %s", cursor)
 
-        print("Executing query")
         #getting the SQL info
         cursor.execute(query)
-        print("Query execured, fetching")
         grades = cursor.fetchall()
-        print("Success")
 
         logger.info("Succesfully read-in the SQL data")
 
@@ -52,7 +47,6 @@ def ontology_import (query=str):
 
     finally:
         if (connection):
-            print("Closing connection")
             cursor.close()
             connection.close()
             logger.debug("PostgreSQL connection is closed")
@@ -182,4 +176,10 @@ def domain_knowledge_clustering (query_grades, query_vle):
             cursor.close()
             connection.close()
             logger.info("PostgreSQL connection is closed")
+
+    #loading the data to pd
+    grade_profile = pd.DataFrame(grade_profile, columns = ["code_module","code_presentation","id_student","id_assessment","weight","score","still_enrolled"])
+    grade_profile["id_assessment"]=pd.to_numeric(grade_profile["id_assessment"])
+
+    vle = pd.DataFrame(vle, columns = ["site","activity_type"])
     return grade_profile, vle

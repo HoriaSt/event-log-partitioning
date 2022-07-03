@@ -105,7 +105,7 @@ log = event_log_import (data_path = "simple_event_log.xes") # reads the event lo
 logger_general.info ("The available event log has the length %s",len(log))
 
 #obtaining the domain knowledge information
-knowledge = ontology.domain_knowledge_processing(query=query)
+knowledge = ontology.domain_knowledge_processing_partitioning(query=query)
 logger_general.info ("The domain knowledge was obtained: %s", knowledge.head(3))
 
 
