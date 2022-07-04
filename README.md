@@ -11,7 +11,7 @@ The required Input for running the programmable code is the OULAD open dataset w
 It should be stored in a folder named "data" on the main folder (or the hardcoded data path variable requires adjustment). The code will recreate some CSV files before sending the data to PostgreSQL; therefore, additional storage space is required.
 
 ## System Requirements
-Approximately 500MBs of storage space is needed for the required data and for parsing the cleaned information.
+Approximately 500MBs of storage space is needed for the required data and for parsing the cleaned information. Moreover, creating the event log and parsing it to a XES file requieres an aditional 778MBs of storage.
 
 The required packages to be installed are:
 - pandas
