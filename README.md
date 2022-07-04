@@ -21,7 +21,7 @@ The required packages to be installed are:
 Moreover, the user only requires a machine that can run Python and PostgreSQL. The minimum requirements for the two are
 - a 1 GHz processor
 - 2 GB of RAM (recommended are 4 GB)
-- 512 MB of HDD storage space
+- 512 MB of HDD storage space (for the instalation, in addition to the 1.28 GBs requiered for the data)
 
 The code was prepared and run on a Windows 10 machine with a 1.80 GHz i7-8550U CPU, 8GB of installed RAM and sufficient HDD storage space.
 
