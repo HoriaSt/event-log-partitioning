@@ -31,4 +31,4 @@ Testing should also be implemented (for e.g. using pytest)
 
 Moreover, better standardization could be achieved by testing the functions on a different dataset. Another useful next step is to convert the PM4Py integration in a ProM pulg-in for easier reusability. 
 
-In terms of improving the functionality, the clustering method could be improved by integrating and comparing other algorithms than K-Means.
+In terms of improving the functionality, the clustering method could be improved by integrating and comparing other algorithms than K-Means. Another area of improvement could be expending the data used for clustering with student information such as age, region, number of attemps at passing a course etc..
