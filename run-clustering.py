@@ -2,19 +2,19 @@ import logging
 
 # importing the profile functions
 import func.clustering_profiles as profiles
+
 # importing the module for reading from sql
 import func.ontology_processing as ontology
 import func.sql_load
 import graphviz
 import pandas as pd
 import pm4py
+
 # importing the functions for reading or creating the event log
 from func.event_log import event_log_import
 from func.kmeans import kmeans_apply, preparing_kmeans
 
 # creating the tables in SQL
-
-
 
 
 def partition_event_log(data):

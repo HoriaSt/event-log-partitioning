@@ -1,6 +1,6 @@
 import logging
 
-#importing the module for preprocessing the data
+# importing the module for preprocessing the data
 import func.sql_preproc
 import psycopg2
 
@@ -8,9 +8,9 @@ logging.basicConfig()
 logger = logging.getLogger("SQL_upload")
 logger.setLevel(logging.INFO)
 
-#writing the SQL code needed
-#creating the tables in postgres
-sql_create = '''
+# writing the SQL code needed
+# creating the tables in postgres
+sql_create = """
 
 CREATE TABLE IF NOT EXISTS assessments (
     code_module char(3) NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS registration (
     date_registration date,
     date_unregistration boolean
 );
-'''
+"""
 
-#loading data in the tables
-sql_load = '''
+# loading data in the tables
+sql_load = """
 
 COPY assessments(
     code_module,
@@ -90,38 +90,42 @@ FROM 'D:/Thesis/Work/github/event-log-partitioning/data/studentRegistration_clea
 DELIMITER ','
 CSV HEADER;
 
-'''
+"""
 
-def postgres_connect ():
-    ''' A function that connects to postgres 
-        with my credentials
 
-        Returns: 
-            Returns the conn object to be 
-            used to load tables
-    
-    '''
-    #connecting to postgres
-    conn = psycopg2.connect(database="OULAD",
-                            user='postgres', password='thesis1', 
-                            host='127.0.0.1', port='5433'
-    
+def postgres_connect():
+    """A function that connects to postgres
+    with my credentials
+
+    Returns:
+        Returns the conn object to be
+        used to load tables
+
+    """
+    # connecting to postgres
+    conn = psycopg2.connect(
+        database="OULAD",
+        user="postgres",
+        password="thesis1",
+        host="127.0.0.1",
+        port="5433",
     )
-    
+
     conn.autocommit = True
 
     logger.info("Postgres Connection Successfull")
 
     return conn
 
-#creating the sql tables
+
+# creating the sql tables
 conn = postgres_connect()
 
-#running the SQL Querry
+# running the SQL Querry
 conn.cursor().execute(sql_create)
 conn.cursor().execute(sql_load)
 logger.info("Data was sent to Postgres")
 
-#closing the SQl connection
+# closing the SQl connection
 conn.commit()
 conn.close()

@@ -2,6 +2,7 @@ import collections
 import logging
 
 import pandas as pd
+
 # importing the case generation function
 from func.event_log import case_id
 

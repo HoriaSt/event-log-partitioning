@@ -11,8 +11,10 @@ pd.options.mode.chained_assignment = None
 
 # loading the module for preprocessing and extracting the domain knowledge
 import func.ontology_processing as ontology
+
 # creating the ontology in sql
 import func.sql_load
+
 # loading the module for event log generation and reading in
 from func.event_log import event_log_generation, event_log_import
 
