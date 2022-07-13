@@ -1,8 +1,8 @@
-import psycopg2
 import logging
 
 #importing the module for preprocessing the data
 import func.sql_preproc
+import psycopg2
 
 logging.basicConfig()
 logger = logging.getLogger("SQL_upload")
