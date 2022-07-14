@@ -10,7 +10,7 @@ The required Input for running the programmable code is the OULAD open dataset w
 
 It should be stored in a folder named "data" on the main folder (or the hardcoded data path variable requires adjustment). The code will recreate some CSV files before sending the data to PostgreSQL; therefore, additional storage space is required.
 
-In case one does not want to create the event log once again using the provided functions, it can also be downloaded from an online page: https://www.dropbox.com/s/2qx0rsp265qfkzy/2022-07-13_OULAD_Event_Log.xes?dl=0
+In case one does not want to create the event log once again using the provided functions, it can also be downloaded from my Dropbox: https://www.dropbox.com/s/2qx0rsp265qfkzy/2022-07-13_OULAD_Event_Log.xes?dl=0
 
 ## System Requirements
 Approximately 500MBs of storage space is needed for the required data and for parsing the cleaned information. Moreover, creating the event log and parsing it to a XES file requieres an aditional 778MBs of storage.
