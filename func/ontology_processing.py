@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 import pm4py
 import psycopg2
+
 from func.event_log import case_id
 
 

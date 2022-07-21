@@ -1,20 +1,19 @@
 # python packages that are imported
 import logging
 
-import graphviz
 import pandas as pd
 import pm4py
 import psycopg2
+
+import graphviz
 
 pd.options.mode.chained_assignment = None
 
 
 # loading the module for preprocessing and extracting the domain knowledge
 import func.ontology_processing as ontology
-
 # creating the ontology in sql
 import func.sql_load
-
 # loading the module for event log generation and reading in
 from func.event_log import event_log_generation, event_log_import
 
@@ -121,7 +120,7 @@ logger_general.info(
     knowledge[:3],
 )
 
-
+knowledge = list(knowledge)
 # splitting the event log for wanted and unwanted traces
 logger_general.info("Splitting started")
 log_wanted, log_unwanted = partition_event_log(knowledge=knowledge, log=log)
