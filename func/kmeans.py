@@ -30,7 +30,7 @@ def preparing_kmeans(activity_profile, performance_profile, grade_profile, vle_p
     logger.debug("The profiles are merged")
     data = reduce(
         lambda left, right: pd.merge(
-            left, right, on=["case:concept:name"], how="inner"
+            left, right, on=["case:concept:name"], how="left"
         ),
         data,
     ).fillna(0)
